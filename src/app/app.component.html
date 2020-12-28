@@ -1,13 +1,12 @@
 <div *ngIf="result">Result: {{result}}</div>
-<form (ngSubmit)="onSubmit($event)">
-  <kendo-grid [data]="DATA" (cellClick)="onCellClick($event)" (cellClose)="onCellClose($event)">
-    <kendo-grid-column field="foo" title="Foo">
-      <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
-        <div class="k-form-field">
-          <input type="text" [formControl]="formGroup.controls[FIELD_NAME]">
-        </div>
-      </ng-template>
-    </kendo-grid-column>
-  </kendo-grid>
-</form>
+<kendo-grid [data]="data$ | async" (cellClick)="onCellClick($event)" (cellClose)="onCellClose($event)"
+            [navigable]="true">
+  <kendo-grid-column field="foo" title="Foo">
+    <ng-template kendoGridEditTemplate let-dataItem="dataItem" let-formGroup="formGroup">
+      <div class="k-form-field">
+        <input type="text" [formControl]="formGroup.controls[FIELD_NAME]">
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
 
